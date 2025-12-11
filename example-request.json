@@ -1,0 +1,196 @@
+{
+  "input": {
+    "workflow": {
+      "4": {
+        "inputs": {
+          "value": 1,
+          "model": [
+            "9",
+            0
+          ]
+        },
+        "class_type": "CFGNorm",
+        "_meta": {
+          "title": "CFGNorm"
+        }
+      },
+      "5": {
+        "inputs": {
+          "filename": "qwen_image_vae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "6": {
+        "inputs": {
+          "filename": "qwen_2.5_vl_7b_fp8_scaled.safetensors"
+        },
+        "class_type": "CLIPLoader",
+        "_meta": {
+          "title": "CLIPLoader"
+        }
+      },
+      "9": {
+        "inputs": {
+          "value": 3,
+          "model": [
+            "15",
+            0
+          ]
+        },
+        "class_type": "ModelSamplingAuraFlow",
+        "_meta": {
+          "title": "ModelSamplingAuraFlow"
+        }
+      },
+      "10": {
+        "inputs": {
+          "width": 2560,
+          "height": 1440,
+          "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+          "title": "EmptySD3LatentImage"
+        }
+      },
+      "12": {
+        "inputs": {
+          "pixels": [
+            "18",
+            0
+          ],
+          "vae": [
+            "5",
+            0
+          ]
+        },
+        "class_type": "VAEEncode",
+        "_meta": {
+          "title": "VAEEncode"
+        }
+      },
+      "13": {
+        "inputs": {
+          "seed": 1118877715456453,
+          "steps": 4,
+          "cfg": 1,
+          "sampler_name": "euler",
+          "scheduler": "simple",
+          "denoise": 1,
+          "model": [
+            "4",
+            0
+          ],
+          "positive": [
+            "17",
+            0
+          ],
+          "negative": [
+            "16",
+            0
+          ],
+          "latent_image": [
+            "12",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "14": {
+        "inputs": {
+          "samples": [
+            "13",
+            0
+          ],
+          "vae": [
+            "5",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "15": {
+        "inputs": {
+          "filename": "Qwen-Image-Edit-Lightning-4steps-V1.0-bf16.safetensors",
+          "model": [
+            "19",
+            0
+          ]
+        },
+        "class_type": "LoraLoaderModelOnly",
+        "_meta": {
+          "title": "LoraLoaderModelOnly"
+        }
+      },
+      "16": {
+        "inputs": {
+          "text": "",
+          "clip": [
+            "6",
+            0
+          ],
+          "vae": [
+            "5",
+            0
+          ],
+          "image1": [
+            "18",
+            0
+          ]
+        },
+        "class_type": "TextEncodeQwenImageEditPlus",
+        "_meta": {
+          "title": "TextEncodeQwenImageEditPlus"
+        }
+      },
+      "17": {
+        "inputs": {
+          "text": "make it more sunny",
+          "clip": [
+            "6",
+            0
+          ],
+          "vae": [
+            "5",
+            0
+          ],
+          "image1": [
+            "18",
+            0
+          ]
+        },
+        "class_type": "TextEncodeQwenImageEditPlus",
+        "_meta": {
+          "title": "TextEncodeQwenImageEditPlus"
+        }
+      },
+      "18": {
+        "inputs": {
+          "text": "lanczos"
+        },
+        "class_type": "ImageScaleToTotalPixels",
+        "_meta": {
+          "title": "ImageScaleToTotalPixels"
+        }
+      },
+      "19": {
+        "inputs": {
+          "filename": "qwen_image_edit_2509_fp8_e4m3fn.safetensors"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      }
+    }
+  }
+}
